@@ -12,9 +12,21 @@ import {
 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../data/products';
 
-export function Footer() {
+interface FooterProps {
+  onNavigate?: (page: 'home' | 'products' | 'about') => void;
+}
+
+export function Footer({ onNavigate }: FooterProps = {}) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNav = (page: 'home' | 'products' | 'about') => {
+    if (onNavigate) {
+      onNavigate(page);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -119,25 +131,66 @@ export function Footer() {
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-2 text-sm font-bold text-white uppercase tracking-wider font-mono">
               <ShieldCheck className="w-4 h-4 text-emerald-300" />
-              Product Lines & Direct Delivery
+              Product Lines & Dedicated Pages
+            </div>
+
+            <div className="flex flex-wrap gap-2 pb-1">
+              <button
+                type="button"
+                onClick={() => handleNav('products')}
+                className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs text-sky-300 hover:text-white font-medium transition-colors cursor-pointer"
+              >
+                Products Showcase →
+              </button>
+              <button
+                type="button"
+                onClick={() => handleNav('about')}
+                className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs text-emerald-300 hover:text-white font-medium transition-colors cursor-pointer"
+              >
+                About & Infrastructure →
+              </button>
             </div>
 
             <ul className="space-y-2 text-xs sm:text-sm text-slate-200">
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                <span>HDPE Water Supply Pressure Pipes (IS 4984)</span>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('products')}
+                  className="flex items-center gap-2 hover:text-sky-300 transition-colors text-left cursor-pointer"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0" />
+                  <span>HDPE Water Supply Pressure Pipes (IS 4984)</span>
+                </button>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                <span>MDPE Gas & Potable Distribution Pipes (ISO 4437)</span>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('products')}
+                  className="flex items-center gap-2 hover:text-amber-300 transition-colors text-left cursor-pointer"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                  <span>MDPE Gas & Potable Distribution Pipes (ISO 4437)</span>
+                </button>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>Drip Irrigation Micro-Emitter Black Coils (IS 12786)</span>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('products')}
+                  className="flex items-center gap-2 hover:text-emerald-300 transition-colors text-left cursor-pointer"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                  <span>Drip Irrigation Micro-Emitter Black Coils (IS 12786)</span>
+                </button>
               </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                <span>PLB Optical Fiber Telecommunication Ducts</span>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => handleNav('products')}
+                  className="flex items-center gap-2 hover:text-cyan-300 transition-colors text-left cursor-pointer"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
+                  <span>PLB Optical Fiber Telecommunication Ducts</span>
+                </button>
               </li>
             </ul>
 

@@ -146,7 +146,7 @@ export default function App() {
       </main>
 
       {/* Corporate Footer with Real Contact & Location Details */}
-      <Footer />
+      <Footer onNavigate={handleNavigate} />
 
       {/* Interactive Quick RFQ Modal Triggered from Any Page */}
       {rfqModalOpen && (
