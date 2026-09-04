@@ -258,17 +258,17 @@ export function ProductExplodedPipe3D() {
   };
 
   return (
-    <div className="relative w-full h-[520px] sm:h-[580px] rounded-3xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)]">
+    <div className="relative w-full h-[520px] sm:h-[580px] rounded-3xl overflow-hidden bg-white border border-slate-200/80 shadow-sm">
       {/* 3D Canvas Scene */}
       <Canvas className="w-full h-full cursor-grab active:cursor-grabbing">
         <PerspectiveCamera makeDefault position={[0, 1.5, 6.5]} fov={45} />
         
-        {/* Lights */}
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[10, 12, 10]} intensity={1.6} />
-        <directionalLight position={[-10, -5, -8]} intensity={0.6} color="#38bdf8" />
+        {/* Studio Lights for Light Background */}
+        <ambientLight intensity={1.4} />
+        <directionalLight position={[10, 12, 10]} intensity={2.0} color="#ffffff" />
+        <directionalLight position={[-10, -5, -8]} intensity={0.8} color="#e2e8f0" />
         <pointLight position={[0, 0, 4]} intensity={1.2} color="#ffffff" />
-        <pointLight position={[2, 2, -2]} intensity={1.0} color="#38bdf8" />
+        <pointLight position={[2, 2, -2]} intensity={1.0} color="#93c5fd" />
 
         {/* 3D Exploded Model */}
         <ExplodedPipeModel explodeAmount={explodeAmount} pipeVariant={pipeVariant} />
@@ -285,20 +285,20 @@ export function ProductExplodedPipe3D() {
 
       {/* Top Overlay: Technical Title & 360 Badge */}
       <div className="absolute top-4 left-4 right-4 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
-        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/70 backdrop-blur-md border border-white/15 text-white text-xs font-mono shadow-lg">
-          <div className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
-          <span>Interactive 3D Exploded Assembly</span>
+        <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 text-slate-800 text-xs font-mono shadow-xs">
+          <div className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+          <span className="font-semibold text-slate-900">Interactive 3D Exploded View</span>
           <span className="text-slate-400">• Drag 360° to Rotate</span>
         </div>
 
         {/* Variant selector buttons */}
-        <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-white/10 pointer-events-auto">
+        <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xs pointer-events-auto">
           <button
             onClick={() => setPipeVariant('hdpe')}
             className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all ${
               pipeVariant === 'hdpe'
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-blue-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             HDPE (IS 4984)
@@ -307,8 +307,8 @@ export function ProductExplodedPipe3D() {
             onClick={() => setPipeVariant('mdpe')}
             className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all ${
               pipeVariant === 'mdpe'
-                ? 'bg-amber-500 text-white shadow-md shadow-amber-500/30'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-blue-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             MDPE Gas
@@ -317,8 +317,8 @@ export function ProductExplodedPipe3D() {
             onClick={() => setPipeVariant('drip')}
             className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all ${
               pipeVariant === 'drip'
-                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-500/30'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-emerald-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             Drip Lateral
@@ -327,8 +327,8 @@ export function ProductExplodedPipe3D() {
             onClick={() => setPipeVariant('plb')}
             className={`px-3 py-1 rounded-xl text-xs font-semibold transition-all ${
               pipeVariant === 'plb'
-                ? 'bg-cyan-600 text-white shadow-md shadow-cyan-500/30'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-blue-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
             PLB Duct
@@ -338,55 +338,55 @@ export function ProductExplodedPipe3D() {
 
       {/* Layer Callout Annotations (When Exploded) */}
       <div className="absolute top-20 left-4 pointer-events-none hidden md:flex flex-col gap-2 max-w-[240px]">
-        <div className="p-3 rounded-2xl bg-slate-950/75 backdrop-blur-md border border-white/10 text-xs shadow-lg space-y-1">
-          <div className="flex items-center gap-1.5 font-mono text-sky-300 font-bold text-[11px] uppercase">
-            <span className="w-2 h-2 rounded-full bg-sky-400" />
-            1. Outer Carbon UV Shell
+        <div className="p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 text-xs shadow-sm space-y-1">
+          <div className="flex items-center gap-1.5 font-mono text-blue-600 font-bold text-[11px] uppercase">
+            <span className="w-2 h-2 rounded-full bg-blue-600" />
+            1. Outer Protective Shell
           </div>
-          <p className="text-[11px] text-slate-300">
+          <p className="text-[11px] text-slate-600">
             Matte black 2.5% carbon black masterbatch. Laser standard markings & co-extruded tracer stripes.
           </p>
         </div>
 
-        <div className="p-3 rounded-2xl bg-slate-950/75 backdrop-blur-md border border-white/10 text-xs shadow-lg space-y-1">
-          <div className="flex items-center gap-1.5 font-mono text-slate-200 font-bold text-[11px] uppercase">
-            <span className="w-2 h-2 rounded-full bg-slate-400" />
-            2. Virgin PE-100 Matrix
+        <div className="p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 text-xs shadow-sm space-y-1">
+          <div className="flex items-center gap-1.5 font-mono text-slate-800 font-bold text-[11px] uppercase">
+            <span className="w-2 h-2 rounded-full bg-slate-500" />
+            2. Middle Strength Layer
           </div>
-          <p className="text-[11px] text-slate-300">
-            100% prime molecular weight structural core. Burst pressure certified up to PN 16 (16 kg/cm²).
+          <p className="text-[11px] text-slate-600">
+            100% prime molecular weight PE-100 structural matrix. Pressure certified up to PN 16 (16 kg/cm²).
           </p>
         </div>
 
-        <div className="p-3 rounded-2xl bg-slate-950/75 backdrop-blur-md border border-white/10 text-xs shadow-lg space-y-1">
-          <div className="flex items-center gap-1.5 font-mono text-emerald-300 font-bold text-[11px] uppercase">
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            3. Mirror-Smooth Bore
+        <div className="p-3 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 text-xs shadow-sm space-y-1">
+          <div className="flex items-center gap-1.5 font-mono text-emerald-600 font-bold text-[11px] uppercase">
+            <span className="w-2 h-2 rounded-full bg-emerald-600" />
+            3. Inner Smooth Core
           </div>
-          <p className="text-[11px] text-slate-300">
-            Glossy silicone-coated ultra-low friction interior (μ ≤ 0.06). Zero scaling & maximum flow velocity.
+          <p className="text-[11px] text-slate-600">
+            Mirror-smooth silicone-coated low-friction interior bore (μ ≤ 0.06) preventing scaling and sediment.
           </p>
         </div>
       </div>
 
       {/* Bottom Control Bar: Explode Slider & Toggle Button */}
-      <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row items-center justify-between gap-3 p-3.5 rounded-2xl bg-slate-950/80 backdrop-blur-md border border-white/10 shadow-xl pointer-events-auto">
+      <div className="absolute bottom-4 left-4 right-4 flex flex-col sm:flex-row items-center justify-between gap-3 p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-md pointer-events-auto">
         <div className="flex items-center gap-3 w-full sm:w-auto">
           <button
             onClick={toggleExploded}
-            className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-sky-500 hover:from-blue-500 hover:to-sky-400 border border-sky-400/30 flex items-center gap-2 shadow-md shadow-blue-500/25 transition-all"
+            className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 flex items-center gap-2 shadow-xs transition-all cursor-pointer"
           >
             <Layers className="w-4 h-4" />
             <span>{isExploded ? 'Assemble Layers' : 'Explode Layers'}</span>
           </button>
 
-          <span className="text-xs font-mono text-slate-300 hidden sm:inline">
+          <span className="text-xs font-mono text-slate-600 hidden sm:inline">
             Separation: {Math.round(explodeAmount * 100)}%
           </span>
         </div>
 
         <div className="flex items-center gap-3 w-full sm:w-72">
-          <span className="text-[11px] font-mono text-slate-400">Assemble</span>
+          <span className="text-[11px] font-mono text-slate-500">Assemble</span>
           <input
             type="range"
             min={0}
@@ -394,9 +394,9 @@ export function ProductExplodedPipe3D() {
             step={0.01}
             value={explodeAmount}
             onChange={handleSliderChange}
-            className="w-full accent-sky-400 bg-white/10 h-2 rounded-lg cursor-pointer"
+            className="w-full accent-blue-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
           />
-          <span className="text-[11px] font-mono text-sky-300">Exploded</span>
+          <span className="text-[11px] font-mono font-medium text-blue-600">Exploded</span>
         </div>
       </div>
     </div>

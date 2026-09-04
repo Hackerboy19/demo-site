@@ -17,15 +17,30 @@ function StatTiltCard({ stat, index }: TiltCardProps) {
   const getIcon = (id: string) => {
     switch (id) {
       case 'experience':
-        return <Clock className="w-5 h-5 text-blue-400" />;
+        return <Clock className="w-5 h-5 text-blue-600" />;
       case 'certification':
-        return <Award className="w-5 h-5 text-emerald-400" />;
+        return <Award className="w-5 h-5 text-emerald-600" />;
       case 'staff':
-        return <Users className="w-5 h-5 text-cyan-400" />;
+        return <Users className="w-5 h-5 text-sky-600" />;
       case 'material':
-        return <ShieldCheck className="w-5 h-5 text-indigo-400" />;
+        return <ShieldCheck className="w-5 h-5 text-indigo-600" />;
       default:
-        return <Sparkles className="w-5 h-5 text-blue-400" />;
+        return <Sparkles className="w-5 h-5 text-blue-600" />;
+    }
+  };
+
+  const getIconBg = (id: string) => {
+    switch (id) {
+      case 'experience':
+        return 'bg-blue-50 border-blue-100';
+      case 'certification':
+        return 'bg-emerald-50 border-emerald-100';
+      case 'staff':
+        return 'bg-sky-50 border-sky-100';
+      case 'material':
+        return 'bg-indigo-50 border-indigo-100';
+      default:
+        return 'bg-blue-50 border-blue-100';
     }
   };
 
@@ -37,9 +52,9 @@ function StatTiltCard({ stat, index }: TiltCardProps) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    // Calculate subtle 3D tilt angles (capped at ±10deg)
-    const rotX = ((y - centerY) / centerY) * -10;
-    const rotY = ((x - centerX) / centerX) * 10;
+    // Calculate subtle 3D tilt angles (capped at ±8deg)
+    const rotX = ((y - centerY) / centerY) * -8;
+    const rotY = ((x - centerX) / centerX) * 8;
 
     setRotateX(rotX);
     setRotateY(rotY);
@@ -66,46 +81,41 @@ function StatTiltCard({ stat, index }: TiltCardProps) {
         onMouseLeave={handleMouseLeave}
         style={{
           transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) ${
-            isHovered ? 'scale3d(1.03, 1.03, 1.03)' : 'scale3d(1, 1, 1)'
+            isHovered ? 'scale3d(1.025, 1.025, 1.025)' : 'scale3d(1, 1, 1)'
           }`,
           transition: isHovered
             ? 'transform 0.1s cubic-bezier(0.2, 0, 0, 1)'
             : 'transform 0.5s cubic-bezier(0.2, 0, 0, 1)',
         }}
-        className="relative group rounded-2xl p-6 bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/25 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:shadow-[0_12px_40px_rgba(56,189,248,0.2)] transition-all duration-300"
+        className="relative group rounded-2xl p-6 bg-white border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300"
       >
-        {/* Subtle top glare highlight on hover */}
-        <div
-          className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 via-white/[0.02] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        />
-
         <div className="flex items-center justify-between mb-4">
-          <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 flex items-center justify-center group-hover:scale-110 group-hover:border-white/30 transition-all duration-300 shadow-sm">
+          <div className={`w-11 h-11 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-xs ${getIconBg(stat.id)}`}>
             {getIcon(stat.id)}
           </div>
-          <span className="text-[11px] font-mono font-medium px-2.5 py-1 rounded-full bg-white/5 text-slate-200 border border-white/10 backdrop-blur-sm">
+          <span className="text-[11px] font-mono font-semibold px-2.5 py-1 rounded-full bg-slate-50 text-slate-700 border border-slate-200">
             {stat.highlight}
           </span>
         </div>
 
         <div className="space-y-1.5">
-          <div className="text-3xl font-extrabold text-white tracking-tight flex items-baseline gap-1">
+          <div className="text-3xl font-extrabold text-slate-900 tracking-tight flex items-baseline gap-1.5">
             <span>{stat.value}</span>
             {stat.id === 'certification' && (
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 inline" />
+              <CheckCircle2 className="w-5 h-5 text-emerald-500 inline" />
             )}
           </div>
-          <div className="text-sm font-semibold text-slate-200">{stat.label}</div>
-          <p className="text-xs text-slate-300 leading-relaxed pt-1">
+          <div className="text-sm font-semibold text-slate-700">{stat.label}</div>
+          <p className="text-xs text-slate-500 leading-relaxed pt-1">
             {stat.description}
           </p>
         </div>
 
-        {/* Ambient colored indicator line */}
-        <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+        {/* Ambient verified indicator */}
+        <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400 font-mono">
           <span>STANDARD METRIC</span>
-          <span className="text-emerald-300 flex items-center gap-1 font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-ping" />
+          <span className="text-emerald-600 flex items-center gap-1 font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-ping" />
             VERIFIED
           </span>
         </div>

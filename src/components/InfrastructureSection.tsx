@@ -36,8 +36,8 @@ export function InfrastructureSection() {
   return (
     <section id="infrastructure" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
       {/* Background Subtle Ambience */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
 
       {/* Split Layout Container */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -49,31 +49,31 @@ export function InfrastructureSection() {
           transition={{ duration: 0.6 }}
           className="lg:col-span-6 space-y-6"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-emerald-300 text-xs font-mono tracking-wider uppercase shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
-            <Factory className="w-3.5 h-3.5 text-emerald-300" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono tracking-wider uppercase shadow-xs">
+            <Factory className="w-3.5 h-3.5 text-emerald-600" />
             Manufacturing Facility & Heritage
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             Precision Polymer Extrusion Since 2012
           </h2>
 
-          <p className="text-slate-200 text-base sm:text-lg leading-relaxed">
-            At our advanced production plant in <span className="text-white font-semibold">Rajkot, Gujarat</span>, Abhay Polyplast combines automated German extrusion engineering with stringent multi-stage quality checks overseen directly by proprietor <span className="text-white font-semibold">{COMPANY_DETAILS.proprietor}</span>.
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+            At our advanced production plant in <span className="text-slate-900 font-semibold">Rajkot, Gujarat</span>, Abhay Polyplast combines automated German extrusion engineering with stringent multi-stage quality checks overseen directly by proprietor <span className="text-slate-900 font-semibold">{COMPANY_DETAILS.proprietor}</span>.
           </p>
 
           <div className="space-y-4 pt-2">
             {highlights.map((item, index) => (
               <div
                 key={index}
-                className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/20 hover:bg-white/[0.08] transition-all shadow-[0_4px_16px_0_rgba(0,0,0,0.2)]"
+                className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-200/80 hover:border-slate-300 hover:shadow-md transition-all shadow-xs"
               >
-                <div className="w-8 h-8 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
-                  <CheckCircle2 className="w-4 h-4 text-sky-300" />
+                <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                  <CheckCircle2 className="w-4 h-4 text-blue-600" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white mb-1">{item.title}</h4>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  <h4 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -82,14 +82,14 @@ export function InfrastructureSection() {
           </div>
 
           {/* Quick Regulatory Tags */}
-          <div className="pt-3 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-200">
-            <span className="px-3.5 py-1.5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
+          <div className="pt-3 flex flex-wrap items-center gap-3 text-xs font-mono text-slate-700">
+            <span className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs">
               GST: {COMPANY_DETAILS.gstNumber}
             </span>
-            <span className="px-3.5 py-1.5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
+            <span className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs">
               ISO 9001:2015 Compliant
             </span>
-            <span className="px-3.5 py-1.5 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 shadow-sm">
+            <span className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs">
               BIS Standard IS 4984
             </span>
           </div>
@@ -104,19 +104,16 @@ export function InfrastructureSection() {
           className="lg:col-span-6 relative"
         >
           <div className="relative">
-            {/* Glow backing */}
-            <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-blue-500/20 via-sky-400/20 to-emerald-400/20 blur-xl opacity-50 pointer-events-none" />
-
             {/* Interactive 3D Particle Grid Frame */}
-            <div className="rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] overflow-hidden">
+            <div className="rounded-3xl bg-white border border-slate-200/80 shadow-md overflow-hidden">
               <ParticleNetworkCanvas />
             </div>
           </div>
 
           {/* Micro Caption */}
-          <div className="mt-4 flex items-center justify-between text-xs text-slate-300 px-2 font-mono">
+          <div className="mt-4 flex items-center justify-between text-xs text-slate-500 px-2 font-mono">
             <span className="flex items-center gap-1.5">
-              <Droplets className="w-3.5 h-3.5 text-sky-400" />
+              <Droplets className="w-3.5 h-3.5 text-blue-600" />
               Hydraulic Network Simulation
             </span>
             <span className="text-slate-400">Interactive 3D Mesh</span>
@@ -125,13 +122,13 @@ export function InfrastructureSection() {
       </div>
 
       {/* QC Benchmarks Strip */}
-      <div id="specifications" className="mt-20 pt-12 border-t border-white/10">
+      <div id="specifications" className="mt-20 pt-12 border-t border-slate-200">
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-1.5 text-xs font-mono text-sky-300 uppercase tracking-wider mb-2 px-3 py-1 rounded-full bg-white/5 backdrop-blur-sm border border-white/10">
-            <Microscope className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-1.5 text-xs font-mono text-blue-700 uppercase tracking-wider mb-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200">
+            <Microscope className="w-3.5 h-3.5 text-blue-600" />
             Quality Control Laboratory Standards
           </div>
-          <h3 className="text-2xl sm:text-3xl font-bold text-white">
+          <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
             Exceeding BIS & ISO Mechanical Benchmarks
           </h3>
         </div>
@@ -140,16 +137,16 @@ export function InfrastructureSection() {
           {QUALITY_STANDARDS.map((qc, qIdx) => (
             <div
               key={qIdx}
-              className="p-5 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-white/25 hover:bg-white/[0.08] shadow-[0_8px_32px_0_rgba(0,0,0,0.25)] transition-all"
+              className="p-5 rounded-2xl bg-white border border-slate-200/80 hover:border-slate-300 hover:shadow-md shadow-xs transition-all"
             >
               <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-1">
                 {qc.parameter}
               </div>
-              <h4 className="text-base font-bold text-white mb-2">{qc.title}</h4>
-              <div className="inline-block text-xs font-mono font-bold text-emerald-300 bg-emerald-500/15 px-2.5 py-0.5 rounded-full border border-emerald-400/25 backdrop-blur-sm mb-2">
+              <h4 className="text-base font-bold text-slate-900 mb-2">{qc.title}</h4>
+              <div className="inline-block text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 mb-2">
                 {qc.result}
               </div>
-              <p className="text-xs text-slate-200 leading-relaxed">{qc.detail}</p>
+              <p className="text-xs text-slate-600 leading-relaxed">{qc.detail}</p>
             </div>
           ))}
         </div>

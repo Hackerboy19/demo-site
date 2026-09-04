@@ -181,31 +181,42 @@ function HdpePipeModel({ pipeType }: PipeSceneProps) {
       </mesh>
 
       {/* Floating internal flow particle indicator */}
-      <pointLight position={[0, 0, 0]} intensity={1.5} color={stripeColorHex} distance={3} />
+      <pointLight position={[0, 0, 0]} intensity={0.8} color={stripeColorHex} distance={3} />
+
+      {/* Realistic Soft Contact Shadow on Studio Ground Plane */}
+      <mesh position={[0, -2.85, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[7, 7]} />
+        <meshBasicMaterial
+          transparent
+          opacity={0.12}
+          color="#0f172a"
+          depthWrite={false}
+        />
+      </mesh>
     </group>
   );
 }
 
-// Background Floating Ambient Bokeh Rings
+// Background Floating Ambient Subtle Droplets (clean light theme)
 function FloatingOrbs() {
   return (
     <group>
-      <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1.2}>
+      <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.8}>
         <mesh position={[-3, 2, -2]}>
-          <sphereGeometry args={[0.15, 16, 16]} />
-          <meshBasicMaterial color="#3b82f6" transparent opacity={0.4} />
+          <sphereGeometry args={[0.12, 16, 16]} />
+          <meshBasicMaterial color="#3b82f6" transparent opacity={0.2} />
         </mesh>
       </Float>
-      <Float speed={2} rotationIntensity={0.6} floatIntensity={1.5}>
-        <mesh position={[3.5, -2, -1]}>
-          <sphereGeometry args={[0.2, 16, 16]} />
-          <meshBasicMaterial color="#10b981" transparent opacity={0.35} />
+      <Float speed={2} rotationIntensity={0.4} floatIntensity={1}>
+        <mesh position={[3.2, -1.8, -1]}>
+          <sphereGeometry args={[0.16, 16, 16]} />
+          <meshBasicMaterial color="#10b981" transparent opacity={0.2} />
         </mesh>
       </Float>
-      <Float speed={1.8} rotationIntensity={0.4} floatIntensity={1.1}>
-        <mesh position={[-2, -2.5, 0]}>
-          <sphereGeometry args={[0.1, 16, 16]} />
-          <meshBasicMaterial color="#38bdf8" transparent opacity={0.5} />
+      <Float speed={1.8} rotationIntensity={0.3} floatIntensity={0.9}>
+        <mesh position={[-2.2, -2, 0]}>
+          <sphereGeometry args={[0.09, 16, 16]} />
+          <meshBasicMaterial color="#0284c7" transparent opacity={0.25} />
         </mesh>
       </Float>
     </group>
@@ -219,13 +230,13 @@ export function Hero3DCanvas({ pipeType = 'hdpe' }: { pipeType: 'hdpe' | 'mdpe' 
     // Graceful fallback if WebGL is unavailable
     return (
       <div className="w-full h-full flex items-center justify-center relative">
-        <div className="w-64 h-64 rounded-full bg-blue-600/20 blur-3xl absolute animate-pulse" />
-        <div className="relative z-10 border border-slate-700/60 bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl text-center shadow-2xl">
-          <div className="text-blue-400 font-semibold text-sm uppercase tracking-widest mb-1">
+        <div className="w-64 h-64 rounded-full bg-blue-100 blur-3xl absolute animate-pulse" />
+        <div className="relative z-10 border border-slate-200 bg-white/90 backdrop-blur-xl p-8 rounded-2xl text-center shadow-xl">
+          <div className="text-blue-600 font-semibold text-sm uppercase tracking-widest mb-1">
             Abhay Polyplast
           </div>
-          <div className="text-xl font-bold text-white">PE-100 HDPE Specimen</div>
-          <div className="text-xs text-slate-400 mt-2">Precision Extruded Polymer Tube</div>
+          <div className="text-xl font-bold text-slate-900">PE-100 HDPE Specimen</div>
+          <div className="text-xs text-slate-500 mt-2">Precision Extruded Polymer Tube</div>
         </div>
       </div>
     );
@@ -238,28 +249,24 @@ export function Hero3DCanvas({ pipeType = 'hdpe' }: { pipeType: 'hdpe' | 'mdpe' 
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = 1.15;
+          gl.toneMappingExposure = 1.05;
         }}
         onError={() => setHasError(true)}
       >
         <PerspectiveCamera makeDefault position={[0, 0, 7.5]} fov={42} />
 
-        {/* Studio Lighting Setup for Glossy Dark Polymer */}
-        <ambientLight intensity={0.8} />
-        {/* Key Blue Rim Light */}
-        <directionalLight position={[5, 4, 6]} intensity={2.8} color="#93c5fd" />
-        {/* Soft Warm/White Fill Light */}
-        <directionalLight position={[-6, -3, 4]} intensity={1.2} color="#f8fafc" />
-        {/* Agricultural Emerald Rim Light Accent */}
-        <pointLight position={[3, -3, 2]} intensity={2.2} color="#34d399" distance={10} />
-        {/* Sharp High-Contrast Top Rim Highlight */}
-        <spotLight
-          position={[0, 7, 3]}
-          intensity={2.5}
-          angle={0.6}
-          penumbra={0.5}
-          color="#ffffff"
-        />
+        {/* Soft Studio Lighting Setup for Pure Light Vercel Environment */}
+        <ambientLight intensity={1.4} />
+        {/* Main Studio Key Softbox */}
+        <directionalLight position={[6, 8, 8]} intensity={2.2} color="#ffffff" />
+        {/* Soft Ambient Fill Light */}
+        <directionalLight position={[-6, -2, 5]} intensity={1.0} color="#f8fafc" />
+        {/* Crisp Backlight / Rim Definition */}
+        <directionalLight position={[0, 7, -6]} intensity={1.6} color="#e2e8f0" />
+        {/* Specular Glint Accent */}
+        <pointLight position={[3, 2, 4]} intensity={1.2} color="#93c5fd" distance={12} />
+        {/* Agricultural Emerald Rim Reflection */}
+        <pointLight position={[-3, -2, 3]} intensity={1.0} color="#6ee7b7" distance={8} />
 
         <HdpePipeModel pipeType={pipeType} />
         <FloatingOrbs />

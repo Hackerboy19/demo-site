@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { StatsSection } from './components/StatsSection';
 import { ProductGrid } from './components/ProductGrid';
+import { ExportFootprintSection } from './components/ExportFootprintSection';
 import { InfrastructureSection } from './components/InfrastructureSection';
 import { RfqSection } from './components/RfqSection';
 import { Footer } from './components/Footer';
@@ -79,20 +80,19 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-blue-600 selection:text-white font-sans overflow-x-hidden relative">
-      {/* Ambient background glow elements for Frosted Glass refraction */}
-      <div className="fixed -top-40 -left-40 w-96 h-96 bg-indigo-500/20 rounded-full blur-[128px] pointer-events-none -z-10" />
-      <div className="fixed top-1/3 -right-40 w-[480px] h-[480px] bg-blue-500/15 rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="fixed bottom-1/4 -left-40 w-[450px] h-[450px] bg-emerald-500/10 rounded-full blur-[160px] pointer-events-none -z-10" />
-      <div className="fixed -bottom-40 -right-40 w-96 h-96 bg-cyan-500/15 rounded-full blur-[128px] pointer-events-none -z-10" />
-      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/10 rounded-full blur-[180px] pointer-events-none -z-10" />
+    <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-600 selection:text-white font-sans overflow-x-hidden relative">
+      {/* Soft ambient background gradients for subtle Vercel-style depth */}
+      <div className="fixed -top-40 -left-40 w-[520px] h-[520px] bg-blue-100/50 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="fixed top-1/3 -right-40 w-[480px] h-[480px] bg-sky-100/40 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="fixed bottom-1/4 -left-40 w-[450px] h-[450px] bg-emerald-100/35 rounded-full blur-[160px] pointer-events-none -z-10" />
+      <div className="fixed -bottom-40 -right-40 w-96 h-96 bg-blue-50/60 rounded-full blur-[130px] pointer-events-none -z-10" />
 
-      {/* Subtle glass grid texture */}
+      {/* Subtle engineering dot matrix pattern in soft slate */}
       <div
-        className="fixed inset-0 pointer-events-none -z-10 opacity-[0.025]"
+        className="fixed inset-0 pointer-events-none -z-10 opacity-[0.28]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)`,
-          backgroundSize: '36px 36px'
+          backgroundImage: `radial-gradient(circle at 1px 1px, #cbd5e1 1px, transparent 0)`,
+          backgroundSize: '32px 32px'
         }}
       />
 
@@ -117,16 +117,19 @@ export default function App() {
             {/* 2. Floating Stats (Glassmorphism & 3D Tilt) */}
             <StatsSection />
 
-            {/* 3. Real Product Grid with Dark Frosted Glass & Calculator */}
+            {/* 3. Real Product Grid */}
             <ProductGrid
               onSelectProductForRfq={handleOpenRfq}
               onPreviewIn3D={handlePreviewIn3D}
             />
 
-            {/* 4. Infrastructure Split Layout & 3D Particle Grid */}
+            {/* 4. Interactive 3D Globe / Export Footprint */}
+            <ExportFootprintSection />
+
+            {/* 5. Infrastructure Split Layout & 3D Particle Grid */}
             <InfrastructureSection />
 
-            {/* 5. Quick RFQ Section */}
+            {/* 6. Quick RFQ Section */}
             <RfqSection
               selectedProductId={rfqTargetProduct}
               initialQuantity={rfqTargetQuantity}

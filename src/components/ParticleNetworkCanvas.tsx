@@ -225,22 +225,22 @@ export function ParticleNetworkCanvas() {
   }
 
   return (
-    <div className="w-full h-[450px] md:h-[550px] relative rounded-3xl overflow-hidden border border-slate-800/80 bg-slate-950/80 backdrop-blur-xl shadow-2xl">
+    <div className="w-full h-[450px] md:h-[550px] relative rounded-3xl overflow-hidden border border-slate-200/80 bg-slate-50/80 backdrop-blur-xl shadow-sm">
       <div className="absolute top-4 left-5 z-10 flex items-center gap-2">
         <span className="relative flex h-2.5 w-2.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-600 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-600"></span>
         </span>
-        <span className="text-xs font-mono text-slate-300 tracking-wider uppercase">
+        <span className="text-xs font-mono font-medium text-slate-700 tracking-wider uppercase">
           Live Fluidic & Mesh Flow Sim
         </span>
       </div>
 
       <div className="absolute bottom-4 right-5 z-10 text-right pointer-events-none">
-        <span className="text-[10px] font-mono text-slate-400 block">
+        <span className="text-[10px] font-mono text-slate-500 block">
           FLOW COEFFICIENT: 0.984
         </span>
-        <span className="text-[10px] font-mono text-emerald-400 block">
+        <span className="text-[10px] font-mono text-emerald-600 font-semibold block">
           PRESSURE TEST: NOMINAL 16 BAR
         </span>
       </div>
@@ -251,9 +251,9 @@ export function ParticleNetworkCanvas() {
         onError={() => setHasError(true)}
       >
         <PerspectiveCamera makeDefault position={[0, 0, 7.5]} fov={50} />
-        <ambientLight intensity={0.6} />
-        <pointLight position={[0, 5, 5]} intensity={2.0} color="#38bdf8" />
-        <pointLight position={[5, -5, 2]} intensity={2.0} color="#34d399" />
+        <ambientLight intensity={1.2} />
+        <pointLight position={[0, 5, 5]} intensity={2.2} color="#2563eb" />
+        <pointLight position={[5, -5, 2]} intensity={2.0} color="#059669" />
         <WaterParticleField />
       </Canvas>
     </div>
